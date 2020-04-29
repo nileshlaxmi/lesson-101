@@ -25,7 +25,7 @@ Storing a GUID in a cookie will allow you to connect the two actions together.
 
 Using JavaScript, it is possible to string together various values created by global objects like window.navigator and window.screen so as to produce a GUID.
 
-```
+```javascript
 /**
  * @function _guid
  * @description Creates GUID for user based on several different browser variables
@@ -47,10 +47,12 @@ var guid = function() {
     return guid;
 };
 ```
+
 If you do need to store the user-journey of your visitors then please respect their Do Not Track (DNT) preferences.
 
 Here’s a function you can use for this purpose:
-```
+
+```javascript
 /**
    * @function doNotTrack
    * @description Checks if use has declared Do Not Track (DNT) in their browser
@@ -67,6 +69,7 @@ Here’s a function you can use for this purpose:
 ```
 
 ## One fingerprint, one user
+
 The above is a means of monitoring a single user for a single session. The information captured is extremely unlikely to change in the course of that session. It’s also completely anonymous. 
 
 Exploiting the JavaScript-based Canvas API, it is possible to create an almost unique identifier for every desktop or handheld device. But it’s not 100% accurate, and AddThis, when announcing their withdrawal from the scheme, claimed that it’s accuracy rate was no higher than 90%.
@@ -83,7 +86,7 @@ Other cookie alternatives include an exploit of the new HTML5 IndexedDB client-b
 
 It’s not that cookies don’t have a role to play in both website functionality and limited commercial activity, but placing long-term, secret trackers on users’ electronic devices is no more ethical than bugging phones and cars to monitor day-to-day activity in the pursuit of profit.
 
-# Fingerprintjs2
+## Fingerprintjs2
 
 ## Installation
 
@@ -94,7 +97,8 @@ or https://cdnjs.com/libraries/fingerprintjs2
 * Yarn: yarn add fingerprintjs2
 
 ## Usage
-```
+
+```javascript
 if (window.requestIdleCallback) {
     requestIdleCallback(function () {
         Fingerprint2.get(function (components) {
@@ -117,16 +121,20 @@ On my machine (MBP 2013 Core i5) + Chrome 46 the default FP process takes about 
 To speed up fingerprint computation, you can exclude font detection (~ 40ms), canvas fingerprint (~ 10ms), WebGL fingerprint (~ 35 ms), and Audio fingerprint (~30 ms).
 
 ## Options
+
 You choose which components to include in the fingerprint, and configure some other stuff. Example:
-```
+
+```javascript
 var options = {fonts: {extendedJsFonts: true}, excludes: {userAgent: true}}
 ```
+
 For the default options, please see the source code (look for  ```var defaultOptions = {}```).
 
 ### excludes
+
 An object of with components keys to exclude. Empty object to include everything. By default most of the components are included (please see the source code for details).
 
-```
+```javascript
 var options = {
     excludes: {userAgent: true, language: true}
 }
@@ -136,9 +144,10 @@ To see a list of possible excludes, please see the source code (look for
 ```var components = []```).
 
 ### Constants
+
 The constants used for unavailable, error'd, or excluded components' values.
 
-```
+```javascript
 var options = {
     NOT_AVAILABLE: 'not available',
     ERROR: 'error',

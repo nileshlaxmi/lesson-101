@@ -1,21 +1,24 @@
 # SSH Keys
 
-## What are SSH Keys?
+## What are SSH Keys
+
 SSH keys are essentially two files that each hold an encryption key in them – one public, one private. Only the private key can decrypt messages encrypted with the public key, and vice versa, ensuring only the holder of the key has access to the server. This type of encryption method is also called Public Key Cryptography or Asymmetric Cryptography. With the added benefit of setting a passphrase for the private key (that encrypts it’s content on disk, so no one can see or use it even if they get a hold of it), SSH keys are much safer than password authentication in most use-cases.
 
-## Generating SSH Keys with SSH-KEYGEN:
+## Generating SSH Keys with SSH-KEYGEN
+
 Fire up your shell, and type in ssh-keygen:
 
 ![alt text](https://blog.vpscheap.net/wp-content/uploads/2018/06/ssh_keygen.png "SSH Keygen")
 
 ## Benefits of SSH Keys
+
 Using SSH keys is only one option for making sure only authorized persons have access to the server, and has many added benefits besides that. Having password authentication disabled on the server renders botnet brute-force attacks virtually useless, as they’ll never have the chance to try to log in as they don’t have the private key. Likewise, the private key and it’s passphrase never get sent over the network, as opposed to a password which the server has to authenticate, so there’s practically no possibility of a man-in-the-middle attack. That’s not to say they’re completely secure – if your local machine and passphrase get compromised, one could gain unauthorized access.
 
 They can also be used in automation scripts to automatically connect to servers, and management of multiple keys is made easy by various keyring applications. Though not suitable for every use-case, SSH keys are a great choice for having that extra layer of security without much hassle.
 
-## How to set up for Git:
+## How to set up for Git
 
-```
+```bash
 Check to see if you have any existing SSH keys:
 ls -al ~/.ssh
 
